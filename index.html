@@ -36,149 +36,211 @@
     </header>
 
     <main>
-        <div class="main-nav">
-            <a href="#">Главная</a>
-            <span class="sep">/</span>
-            <a href="#">Расписание</a>
-            <span class="sep">/</span>
-            <a href="#">Москва</a>
-            <span class="sep">/</span>
-            <a href="#">Старшая группа</a>
-        </div>
-        <h1 class="title">Православный Speed Dating</h1>
-        <dev class="info-date">
-            <dev class="date">
-                <h3>02 января</h3>
-                <p><img src="files/clock.svg" alt="clock.svg" style="vertical-align: -2px; margin-right: 6px;" > Пятница, 20:00</p>
-            </dev>
-            <dev class="location">
-                <h3>Ресторан «IL Патио» <a href="#map">На карте</a></h3>
-                <p><img src="files/metro.svg" alt="metro.svg" style="vertical-align: -2px; margin-right: 6px;"> м. Технопарк, просп. Андропова,1, этаж 1</p>
-            </dev>
-        </dev>
-
-        <!-- Боковая форма -->
-        <div class="side-form">
-            <h1 class="form-title">Запишитесь в 1 клик!</h1>
-            <div class="event-title">Православный Speed Dating</div>
-            
-            <div class="price-section">
-                <div class="original-price">1 699 руб.</div>
-                <div class="discount-note">ПРИ ОПЛАТЕ СЕЙЧАС</div>
-                
-                <div class="discount-prices">
-                    <div class="discount-row">
-                        <span class="discount-label">Акция для девушек:</span>
-                        <span class="discount-price">1 199 руб.</span>
-
-                    </div>
-                    <div class="discount-divider"></div>
-                    <div class="discount-row">
-                        <span class="discount-label">Акция для мужчин:</span>
-                        <span class="discount-price">1 199 руб.</span>
-                    </div>
-                </div>
-                <div class="age-frames">👩🏻 <p>20-40 лет</p>,👨🏻 <p>25-45 лет</p></div>
+        <section class="about">
+            <div class="main-nav">
+                <a href="#">Главная</a>
+                <span class="sep">/</span>
+                <a href="#">Расписание</a>
+                <span class="sep">/</span>
+                <a href="#">Москва</a>
+                <span class="sep">/</span>
+                <a href="#">Старшая группа</a>
             </div>
-            
-            <div class="spots-left">
-                <div class="spots-alert">
-                    <span class="alert-text"></span>
-                    Осталось 2 места только для девушек
+            <h1 class="title">Православный Speed Dating</h1>
+            <div class="info-date">
+                <div class="date">
+                    <h3>02 января</h3>
+                    <p><img src="files/clock.svg" alt="clock.svg" style="vertical-align: -2px; margin-right: 6px;" > Пятница, 20:00</p>
+                </div>
+                <div class="location">
+                    <h3>Ресторан «IL Патио» <a href="#map">На карте</a></h3>
+                    <p><img src="files/metro.svg" alt="metro.svg" style="vertical-align: -2px; margin-right: 6px;"> м. Технопарк, просп. Андропова,1, этаж 1</p>
                 </div>
             </div>
-            
-            <form class="booking-form" id="sideForm">
-                <input type="text" class="form-input" placeholder="Имя" required>
-                <input type="tel" class="form-input" placeholder="Телефон" required>
-                <input type="email" class="form-input" placeholder="Email" required>
-                <input type="number" class="form-input" placeholder="Возраст" required>
+
+            <div class="side-form">
+                <h1 class="form-title">Запишитесь в 1 клик!</h1>
+                <div class="event-title">Православный Speed Dating</div>
                 
-                <div class="gender-section">
-                    <span class="gender-label">Ваш пол</span>
-                    <div class="gender-options">
-                        <label class="gender-option">
-                            <input type="radio" name="gender-side" value="male">
-                            <span class="radio-circle"></span>
-                            <span class="radio-text">Муж.</span>
-                        </label>
-                        <label class="gender-option">
-                            <input type="radio" name="gender-side" value="female">
-                            <span class="radio-circle"></span>
-                            <span class="radio-text">Жен.</span>
-                        </label>
+                <div class="price-section">
+                    <div class="original-price">1 699 руб.</div>
+                    <div class="discount-note">ПРИ ОПЛАТЕ СЕЙЧАС</div>
+                    
+                    <div class="discount-prices">
+                        <div class="discount-row">
+                            <span class="discount-label">Акция для девушек:</span>
+                            <span class="discount-price">1 199 руб.</span>
+
+                        </div>
+                        <div class="discount-divider"></div>
+                        <div class="discount-row">
+                            <span class="discount-label">Акция для мужчин:</span>
+                            <span class="discount-price">1 199 руб.</span>
+                        </div>
+                    </div>
+                    <div class="age-frames">👩🏻 <p>20-40 лет</p>,👨🏻 <p>25-45 лет</p></div>
+                </div>
+                
+                <div class="spots-left">
+                    <div class="spots-alert">
+                        <span class="alert-text"></span>
+                        Осталось 2 места только для девушек
                     </div>
                 </div>
                 
-                <div class="age-note">
-                    Мы можем попросить у вас документ, подтверждающий возраст.
-                </div>
-                
-                <button type="submit" class="submit-booking-btn">
-                    Получить приглашение
-                </button>
-                
-                <label class="privacy-checkbox">
-                    <input type="checkbox" checked required>
-                    <span class="privacy-text">
-                        Я ознакомился и согласен с 
-                        <a href="#">Политикой конфиденциальности</a>, 
-                        <a href="#">Публичной офертой</a> и 
-                        <a href="#">Правилами участия в мероприятиях</a>.
-                    </span>
-                </label>
-            </form>
-        </div>
-
-        <div class="photo-slider">
-            <div class="slider-container">
-                <div class="slide-wrapper">
-                    <div class="slide-image">
-                        <img src="files/Interior/1.png" alt="Интерьер ресторана 1" class="active-slide">
-                        <img src="" alt="" class="next-slide">
+                <form class="booking-form" id="sideForm">
+                    <input type="text" class="form-input" placeholder="Имя" required>
+                    <input type="tel" class="form-input" placeholder="Телефон" required>
+                    <input type="email" class="form-input" placeholder="Email" required>
+                    <input type="number" class="form-input" placeholder="Возраст" required>
+                    
+                    <div class="gender-section">
+                        <span class="gender-label">Ваш пол</span>
+                        <div class="gender-options">
+                            <label class="gender-option">
+                                <input type="radio" name="gender-side" value="male">
+                                <span class="radio-circle"></span>
+                                <span class="radio-text">Муж.</span>
+                            </label>
+                            <label class="gender-option">
+                                <input type="radio" name="gender-side" value="female">
+                                <span class="radio-circle"></span>
+                                <span class="radio-text">Жен.</span>
+                            </label>
+                        </div>
                     </div>
                     
-                    <button class="slider-arrow left">
-                        <img src="files/arrow_left.svg" alt="Предыдущее фото" width="40" height="40">
+                    <div class="age-note">
+                        Мы можем попросить у вас документ, подтверждающий возраст.
+                    </div>
+                    
+                    <button type="submit" class="submit-booking-btn">
+                        Получить приглашение
                     </button>
                     
-                    <button class="slider-arrow right">
-                        <img src="files/arrow_right.svg" alt="Следующее фото" width="40" height="40">
-                    </button>
+                    <label class="privacy-checkbox">
+                        <input type="checkbox" checked required>
+                        <span class="privacy-text">
+                            Я ознакомился и согласен с 
+                            <a href="#">Политикой конфиденциальности</a>, 
+                            <a href="#">Публичной офертой</a> и 
+                            <a href="#">Правилами участия в мероприятиях</a>.
+                        </span>
+                    </label>
+                </form>
+            </div>
+
+            <div class="photo-slider">
+                <div class="slider-container">
+                    <div class="slide-wrapper">
+                        <div class="slide-image">
+                            <img src="files/Interior/1.png" alt="Интерьер ресторана 1" class="active-slide">
+                            <img src="" alt="" class="next-slide">
+                        </div>
+                        
+                        <button class="slider-arrow left">
+                            <img src="files/arrow_left.svg" alt="Предыдущее фото" width="40" height="40">
+                        </button>
+                        
+                        <button class="slider-arrow right">
+                            <img src="files/arrow_right.svg" alt="Следующее фото" width="40" height="40">
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="about-restaurant">
-            <h1>О ресторане</h1>
-            <p class="marked">отдельный изолированный зал для участников FastLife</p>
-            <p class="marked">5 минут от м. Технопарк</p>
-        </div>
+            <div class="about-restaurant">
+                <h1>О ресторане</h1>
+                <p class="marked">отдельный изолированный зал для участников FastLife</p>
+                <p class="marked">5 минут от м. Технопарк</p>
+            </div>
 
-        <div class="dress-code">
-            <h1>Dress-code</h1>
-            <p>Отсутствие спортивной одежды, пляжных шорт и т.п<br>
-            Погрузитесь в атмосферу новых знакомств и возможно, именно здесь вы встретите свою судьбу!</p>
-        </div>
+            <div class="dress-code">
+                <h1>Dress-code</h1>
+                <p>Отсутствие спортивной одежды, пляжных шорт и т.п<br>
+                Погрузитесь в атмосферу новых знакомств и возможно, именно здесь вы встретите свою судьбу!</p>
+            </div>
 
-        <div class="nav-map">
-            <h1>Как добраться</h1>
-            <p>Выход из м. Технопарк. №7. Выйдя из метро поверните направо в сторону парковки, 
-                пройдите через него и поверните направо в сторону аллеи. На алее двигайтесь ко входу в 
-                Остров мечты. Пройдите внутрь, двигайтесь по правой стороне до карусели, напротив вход в ресторан.<br><br>
+            <div class="nav-map">
+                <h1>Как добраться</h1>
+                <p>Выход из м. Технопарк. №7. Выйдя из метро поверните направо в сторону парковки, 
+                    пройдите через него и поверните направо в сторону аллеи. На алее двигайтесь ко входу в 
+                    Остров мечты. Пройдите внутрь, двигайтесь по правой стороне до карусели, напротив вход в ресторан.<br><br>
 
-                Для участия в мероприятии обязательна предварительная запись по телефону 
-                +7 (495) 151-00-25 или на сайте. Количество мест на каждое мероприятие ограничено.</p>
-            
-            <div id="map" class="yandex-map"></div>
-            <h4>Построить маршрут:</h4>
-            <a href="https://yandex.ru/maps/-/CLTHyTkb"><img src="files/yandex-nav.svg" alt="yandex-nav.svg"></a>
-            <a href="https://yandex.ru/maps/-/CLTHyTkb"><img src="files/yandex-map.svg" alt="yandex-nav.svg"></a>
-        </div>
+                    Для участия в мероприятии обязательна предварительная запись по телефону 
+                    +7 (495) 151-00-25 или на сайте. Количество мест на каждое мероприятие ограничено.</p>
+                
+                <div id="map" class="yandex-map"></div>
+                <h4>Построить маршрут:</h4>
+                <a href="https://yandex.ru/maps/-/CLTHyTkb"><img src="files/yandex-nav.svg" alt="yandex-nav.svg"></a>
+                <a href="https://yandex.ru/maps/-/CLTHyTkb"><img src="files/yandex-map.svg" alt="yandex-nav.svg"></a>
+            </div>
 
-        <div class="event-going">
-            <h1>Как проходит</h1>
-        </div>
+            <div class="event-going">
+                <h1>Как проходит</h1>
+                
+                <div class="steps-container">
+                    <div class="event-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Регистрация и первый шаг</h3>
+                            <p>Ведущий встречает вас у входа, проверяет документы и билет на мероприятие. Затем вы получаете бейдж с номером и карту симпатий, после чего вас приглашают занять место за уютным столиком.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="event-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Время для общения</h3>
+                            <p>Каждой паре отводится около 5 минут для знакомства. 
+                                Звучит сигнал, мужчины перемещаются к соседнему столику, а девушки остаются на своих местах,
+                                готовясь к следующей встрече.</p>
+                        </div>
+                    </div>
+
+                    <div class="event-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Добро пожаловать на вечеринку свиданий</h3>
+                            <p>В течение вечера у вас есть возможность заполнять карту симпатий,
+                                отмечая тех участников, которые вам понравились, и оставляя свои комментарии. 
+                                Это отличный способ запомнить впечатления о каждом знакомстве!</p>
+                        </div>
+                    </div>
+
+                    <div class="event-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content-4">
+                            <h3>Подведение итогов</h3>
+                            <div class="line"> </div>
+                            <p>После завершения мероприятия все карты симпатий 
+                                собираются и анализируются на наличие взаимных интересов. 
+                                Результаты будут отправлены вам на почту на следующий день - не забудьте проверить!</p>
+                        </div>
+                    </div>
+
+                    <div class="event-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>Обратная связь</h3>
+                            <p>Получив результаты, вы можете узнать, что о вас думают другие участники. 
+                                Для этого просто заполните форму по <a href="https://fastlife.su/oplata/review.php">ссылке</a>. Паре отводится 
+                                около 5 минут для знакомства. Звучит сигнал  мужчины перемещаются к соседнему столику, 
+                                а девушки остаются на своих местах, готовясь к следующей встрече.</p>
+                        </div>
+                    </div>
+
+                    <div class="event-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h3>Не упустите шанс</h3>
+                            <p>Обязательно свяжитесь с вашей симпатией по номеру телефона, указанному в письме с результатами. 
+                                Вы уже сделали первый шаг навстречу друг другу — не упустите возможность продолжить общение!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <div class="modal-overlay" id="modalOverlay">

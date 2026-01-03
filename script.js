@@ -422,3 +422,41 @@ document.addEventListener('DOMContentLoaded', function() {
             myMap.behaviors.enable(['drag', 'scrollZoom', 'dblClickZoom']);
         }
     });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Определяем мобильное устройство
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // Улучшаем работу слайдера на мобильных
+        const slideImage = document.querySelector('.slide-image');
+        if (slideImage) {
+            slideImage.style.touchAction = 'pan-y pinch-zoom';
+        }
+        
+        // Улучшаем работу форм на мобильных
+        const formInputs = document.querySelectorAll('.form-input');
+        formInputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                // Прокручиваем к полю ввода на мобильных
+                setTimeout(() => {
+                    this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+            });
+        });
+        
+        // Улучшаем кнопки на мобильных
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => {
+            button.addEventListener('touchstart', function() {
+                this.style.opacity = '0.8';
+            });
+            
+            button.addEventListener('touchend', function() {
+                this.style.opacity = '1';
+            });
+        });
+    }
+    
+    // Остальной существующий код...
+});

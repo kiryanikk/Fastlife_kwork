@@ -20,6 +20,13 @@ body {
     overflow-x: hidden;
 }
 
+@font-face {
+  font-family: 'UKIJTor'; 
+  src: url('files/fonts/UKIJTor.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 a {
     text-decoration: none;
 }
@@ -641,6 +648,10 @@ main {
     min-height: calc(100vh - 140px);
 }
 
+.about {
+    margin-bottom: 100px;
+}
+
 .main-nav {
     display: flex;
     gap: 10px;
@@ -704,7 +715,7 @@ main {
 
 .photo-slider {
     margin-top: 30px;
-    width: 850px;
+    width: 950px;
 }
 
 .slide-wrapper {
@@ -1083,7 +1094,7 @@ main {
 
 
 .about-restaurant {
-    width: 850px;
+    width: 950px;
     height: 100%;
     background-color: white;
     border-radius: 20px;
@@ -1122,7 +1133,7 @@ main {
 }
 
 .dress-code {
-    width: 850px;
+    width: 950px;
     height: 100%;
     background-color: white;
     border-radius: 20px;
@@ -1150,7 +1161,7 @@ main {
 
 
 .nav-map {
-    width: 850px;
+    width: 950px;
     height: 100%;
     background-color: white;
     border-radius: 20px;
@@ -1203,23 +1214,598 @@ main {
 }
 
 .event-going {
-    width: 850px;
-    height: 100%;
+    width: 100%;
+    max-width: 950px;
     background-color: white;
     border-radius: 20px;
-    margin-top: 30px;
-    margin-bottom: 30px;
     color: #272525;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 36px;
+    padding: 36px 40px 40px;
     position: relative;
-    padding-bottom: 40px;
+    box-sizing: border-box;
 }
 
 .event-going h1 {
     font-family: 'Igra Sans', sans-serif;
     font-size: 48px;
     font-weight: 600;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.steps-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.event-step {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(39, 37, 37, 0.25);
+    border-radius: 20px;
+    padding: 25px 30px;
+    box-sizing: border-box;
+    /* height: 270px; */
+    background: white;
+}
+
+.step-number {
+    font-size: 48px;
+    color: #F42D18;
+    font-family: 'UKIJTor', sans-serif;
+    font-weight: bold;
+    line-height: 1;
+    margin-right: 20px;
+    flex-shrink: 0;
+    min-width: 60px;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h3 {
+    font-family: 'Igra Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
     margin-bottom: 15px;
+    color: #272525;
+    line-height: 1.3;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(39, 37, 37, 0.25);
+}
+
+.step-content p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(39, 37, 37);
+}
+
+.step-content-4 {
+    flex: 1;
+}
+
+.step-content-4 h3 {
+    font-family: 'Igra Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    width: 113px;
+    margin-bottom: 15px;
+    color: #272525;
+    line-height: 1.3;
+}
+
+.line {
+    border-bottom: 1px solid rgba(39, 37, 37, 0.25);
+}
+
+.step-content-4 p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(39, 37, 37);
+    margin-top: 10px;
+}
+
+.step-content a {
+    color: rgb(255, 44, 51, 0.75);
+    text-decoration: underline;
+}
+
+
+
+
+
+
+/* Добавляем медиа-запросы для мобильной версии 320px */
+@media (max-width: 768px) {
+    header {
+        height: 60px;
+        padding: 0 15px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .left {
+        width: auto;
+        margin: 0;
+        align-items: center;
+    }
+
+    .logo {
+        width: 100px;
+        height: auto;
+    }
+
+    .navigation {
+        display: none; /* Скрываем навигацию на мобильных */
+    }
+
+    .right {
+        position: static;
+        margin: 0;
+        gap: 5px;
+    }
+
+    .number {
+        display: none; /* Скрываем номер телефона на мобильных */
+    }
+
+    .btn-contact {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #272525;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-contact .contact {
+        display: none; /* Скрываем текст, оставляем только иконку */
+    }
+
+    .btn-contact::before {
+        content: "☎";
+        color: white;
+        font-size: 18px;
+    }
+
+    main {
+        margin: 20px 15px 0 15px;
+        padding: 0;
+    }
+
+    .main-nav {
+        font-size: 12px;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .title {
+        font-size: 28px;
+        width: 100%;
+        margin-top: 20px;
+        line-height: 1.2;
+    }
+
+    .info-date {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    .date h3, .location h3 {
+        font-size: 16px;
+    }
+
+    .location a {
+        font-size: 12px;
+    }
+
+    .side-form {
+        position: static;
+        width: 100%;
+        margin: 20px 0;
+        padding: 20px;
+    }
+
+    .form-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .event-title {
+        font-size: 16px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .original-price {
+        font-size: 16px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .discount-note {
+        width: 100%;
+        height: 35px;
+        line-height: 35px;
+        margin-bottom: 15px;
+        font-size: 12px;
+    }
+
+    .discount-row {
+        padding: 8px 10px;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .discount-label, .discount-price {
+        font-size: 12px;
+    }
+
+    .age-frames {
+        justify-content: center;
+        font-size: 12px;
+        margin: 10px 0;
+    }
+
+    .spots-alert {
+        font-size: 12px;
+        padding: 8px 10px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .booking-form {
+        gap: 12px;
+    }
+
+    .booking-form .form-input {
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .gender-section {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .gender-label {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+
+    .gender-options {
+        width: 100%;
+        max-width: 250px;
+        height: 40px;
+        padding: 0 15px;
+    }
+
+    .age-note {
+        width: 100%;
+        font-size: 10px;
+        text-align: center;
+        margin: 5px 0;
+    }
+
+    .submit-booking-btn {
+        height: 45px;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .privacy-checkbox {
+        font-size: 10px;
+        margin: 10px auto 0;
+        line-height: 1.3;
+    }
+
+    .privacy-text {
+        text-align: left;
+    }
+
+    .photo-slider {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .slide-wrapper {
+        height: 200px;
+    }
+
+    .slide-image img {
+        border-radius: 15px;
+    }
+
+    .slider-arrow {
+        width: 30px;
+        height: 30px;
+    }
+
+    .slider-arrow img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .slider-arrow.left {
+        left: 5px;
+    }
+
+    .slider-arrow.right {
+        right: 5px;
+    }
+
+    .about-restaurant,
+    .dress-code,
+    .nav-map,
+    .event-going {
+        width: 100%;
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .about-restaurant h1,
+    .dress-code h1,
+    .nav-map h1,
+    .event-going h1 {
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    .about-restaurant p {
+        font-size: 14px;
+        padding-left: 15px;
+        margin: 8px 0;
+    }
+
+    .about-restaurant p.marked::before {
+        top: 12px;
+    }
+
+    .dress-code p,
+    .nav-map p {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .yandex-map {
+        width: 100%;
+        height: 250px;
+        margin-top: 20px;
+    }
+
+    .nav-map h4 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+    .nav-map a img {
+        width: 120px;
+        height: auto;
+        margin-right: 10px;
+    }
+
+    .steps-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .event-step {
+        padding: 15px;
+        height: auto;
+    }
+
+    .step-number {
+        font-size: 32px;
+        margin-right: 15px;
+        min-width: 40px;
+    }
+
+    .step-content h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+
+    .step-content p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .step-content-4 h3 {
+        font-size: 16px;
+        width: auto;
+    }
+
+    .step-content-4 p {
+        font-size: 14px;
+        margin-top: 8px;
+    }
+
+    /* Модальные окна для мобильных */
+    .modal {
+        width: 90%;
+        min-width: 300px;
+        padding: 25px 20px;
+        gap: 20px;
+        min-height: auto;
+    }
+
+    .modal-title {
+        font-size: 18px;
+    }
+
+    .tabs {
+        gap: 20px;
+    }
+
+    .tab {
+        font-size: 14px;
+    }
+
+    .inputs-row:first-child,
+    .inputs-row:last-child {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .gender-container {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .gender-label-text {
+        width: auto;
+        padding-left: 0;
+    }
+
+    .gender {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .submit-btn {
+        height: 50px;
+        font-size: 16px;
+    }
+
+    .privacy {
+        font-size: 10px;
+        max-width: 100%;
+    }
+
+    .success-modal {
+        width: 90%;
+        min-width: 280px;
+        height: auto;
+        min-height: 300px;
+        padding: 30px 20px;
+    }
+
+    .success-modal-title {
+        font-size: 22px;
+    }
+
+    .success-modal-text {
+        font-size: 16px;
+    }
+
+    .success-modal-btn {
+        width: 150px;
+        height: 50px;
+        font-size: 16px;
+    }
+}
+
+/* Дополнительные стили для очень маленьких экранов */
+@media (max-width: 360px) {
+    .main-nav {
+        font-size: 11px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .side-form {
+        padding: 15px;
+    }
+
+    .form-title {
+        font-size: 20px;
+    }
+
+    .discount-note {
+        font-size: 11px;
+    }
+
+    .slide-wrapper {
+        height: 180px;
+    }
+
+    .about-restaurant h1,
+    .dress-code h1,
+    .nav-map h1,
+    .event-going h1 {
+        font-size: 24px;
+    }
+
+    .yandex-map {
+        height: 200px;
+    }
+}
+
+/* Стили для горизонтальной ориентации на мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+    .slide-wrapper {
+        height: 250px;
+    }
+
+    .side-form {
+        max-width: 400px;
+        margin: 20px auto;
+    }
+
+    .photo-slider {
+        max-width: 500px;
+        margin: 20px auto;
+    }
+}
+
+/* Плавные переходы для мобильных */
+@media (max-width: 768px) {
+    .side-form,
+    .about-restaurant,
+    .dress-code,
+    .nav-map,
+    .event-going {
+        transition: all 0.3s ease;
+    }
+}
+
+/* Исправление проблем с касанием на мобильных */
+@media (max-width: 768px) {
+    button,
+    .form-input,
+    .gender-option,
+    .tab {
+        min-height: 44px; /* Минимальная высота для удобного касания */
+    }
+
+    .booking-form .form-input,
+    .gender-options,
+    .submit-booking-btn {
+        min-height: 44px;
+    }
+
+    /* Улучшение доступности для форм */
+    .form-input:focus,
+    .gender-options:focus-within {
+        outline: 2px solid #FF2C33;
+        outline-offset: 2px;
+    }
+}
+
+/* Скрываем ненужные элементы на мобильных */
+@media (max-width: 768px) {
+    /* Скрываем разделитель в табах */
+    .tabs .tab:first-child::after {
+        display: none;
+    }
+
+    /* Уменьшаем отступы в основном контенте */
+    .about {
+        margin-bottom: 50px;
+    }
 }
