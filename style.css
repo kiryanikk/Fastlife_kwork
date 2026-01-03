@@ -286,22 +286,23 @@ button {
 
 .inputs-row {
     display: flex;
+    flex-direction: column;
     gap: 20px;
     width: 100%;
     box-sizing: border-box;
 }
 
-.inputs-row:first-child {
+.inputs-row-top {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
-.inputs-row:first-child .form-input {
+.inputs-row-top .form-input {
     width: 100%;
 }
 
-.inputs-row:last-child {
+.gender-age-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
@@ -404,11 +405,6 @@ button {
 
 .gender-option input[type="radio"]:checked ~ .radio-text {
     color: #FF2C33;
-}
-
-.inputs-row:last-child .age {
-    width: 100%;
-    height: 50px;
 }
 
 .submit-btn {
@@ -1313,12 +1309,8 @@ main {
     text-decoration: underline;
 }
 
+/* ================ МЕДИА-ЗАПРОСЫ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ 320px ================ */
 
-
-
-
-
-/* Добавляем медиа-запросы для мобильной версии 320px */
 @media (max-width: 768px) {
     header {
         height: 60px;
@@ -1651,28 +1643,41 @@ main {
         font-size: 14px;
     }
 
-    .inputs-row:first-child,
-    .inputs-row:last-child {
+    /* Изменения для контейнера пола и возраста */
+    .inputs-row-top {
         grid-template-columns: 1fr;
         gap: 15px;
     }
-
+    
+    .gender-age-wrapper {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
     .gender-container {
-        height: auto;
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
+        height: auto;
+        width: 100%;
     }
-
+    
     .gender-label-text {
-        width: auto;
+        width: 100%;
         padding-left: 0;
+        text-align: left;
+        font-size: 16px;
     }
-
+    
     .gender {
         width: 100%;
         max-width: 100%;
-        padding: 0 10px;
+        padding: 0 15px;
+    }
+    
+    .age {
+        height: 50px;
+        width: 100%;
     }
 
     .submit-btn {
@@ -1705,6 +1710,30 @@ main {
         width: 150px;
         height: 50px;
         font-size: 16px;
+    }
+    
+    /* Для планшетов и горизонтальной ориентации (когда возраст и пол могут быть рядом) */
+    @media (min-width: 480px) and (max-width: 768px) {
+        .gender-age-wrapper {
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .gender-container {
+            flex-direction: row;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .gender-label-text {
+            width: auto;
+            min-width: 70px;
+        }
+        
+        .gender {
+            flex: 1;
+            max-width: 200px;
+        }
     }
 }
 
@@ -1761,6 +1790,21 @@ main {
         max-width: 500px;
         margin: 20px auto;
     }
+    
+    .gender-age-wrapper {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    
+    .gender-container {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .gender-label-text {
+        width: auto;
+        min-width: 70px;
+    }
 }
 
 /* Плавные переходы для мобильных */
@@ -1807,5 +1851,54 @@ main {
     /* Уменьшаем отступы в основном контенте */
     .about {
         margin-bottom: 50px;
+    }
+}
+
+/* Для больших экранов - обычное расположение */
+@media (min-width: 769px) {
+    .inputs-row:last-child {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        align-items: center;
+    }
+    
+    .gender-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        box-sizing: border-box;
+        height: 50px;
+    }
+    
+    .gender-label-text {
+        font-size: 16px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        width: 90px;
+        text-align: left;
+        padding-left: 20px;
+    }
+    
+    .gender {
+        display: flex;
+        align-items: center;
+        width: 235px;
+        gap: 8px;
+        border: 1px solid rgba(39, 37, 37, 0.5);
+        border-radius: 25px;
+        height: 50px;
+        padding: 0 15px;
+        transition: all 0.3s ease;
+        flex: 1;
+        min-width: 0;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    
+    .age {
+        width: 100%;
+        height: 50px;
     }
 }

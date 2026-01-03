@@ -258,27 +258,28 @@
                     <input type="tel" class="form-input phone-input" placeholder="Телефон" required>
                     <input type="text" class="form-input" placeholder="Имя">
                 </div>
-            <div class="inputs-row">
-                <div class="gender-container">
-                    <span class="gender-label-text">Ваш пол</span>
-                    <div class="gender">
-                        <label class="gender-option">
-                            <input type="radio" name="gender" value="male">
-                            <span class="radio-circle"></span>
-                            <span class="radio-text">Муж.</span>
-                        </label>
-                        <label class="gender-option">
-                            <input type="radio" name="gender" value="female">
-                            <span class="radio-circle"></span>
-                            <span class="radio-text">Жен.</span>
-                        </label>
+                <div class="inputs-row">
+                    <div class="gender-container">
+                        <span class="gender-label-text">Ваш пол</span>
+                        <div class="gender">
+                            <label class="gender-option">
+                                <input type="radio" name="gender" value="male">
+                                <span class="radio-circle"></span>
+                                <span class="radio-text">Муж.</span>
+                            </label>
+                            <label class="gender-option">
+                                <input type="radio" name="gender" value="female">
+                                <span class="radio-circle"></span>
+                                <span class="radio-text">Жен.</span>
+                            </label>
+                        </div>
                     </div>
+                    
+                    <input type="number" 
+                        class="form-input age" 
+                        placeholder="Возраст" 
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,3)">
                 </div>
-                <input type="number" 
-                    class="form-input age" 
-                    placeholder="Возраст" 
-                    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,3)">
-            </div>
                 <button type="submit" class="submit-btn">Отправить</button>
                 <label class="privacy">
                     <input type="checkbox" checked required>
