@@ -402,7 +402,6 @@ document.addEventListener('DOMContentLoaded', function() {
         ymaps.ready(init);
         
         function init() {
-            // Создание карты с центром по адресу: Москва, Ольховская улица, 23
             var myMap = new ymaps.Map("map", {
                 center: [55.774755, 37.667896], // Координаты Ольховская улица, 23
                 zoom: 16,
@@ -457,6 +456,4 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-    
-    // Остальной существующий код...
 });
