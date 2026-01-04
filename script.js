@@ -143,309 +143,310 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    const leftArrow = document.querySelector('.slider-arrow.left');
-    const rightArrow = document.querySelector('.slider-arrow.right');
-    const activeSlide = document.querySelector('.active-slide');
-    const nextSlide = document.querySelector('.next-slide');
-    
-    let currentSlideNumber = 1;
-    let totalSlides = 10;
-    let isAnimating = false;
-    let availableSlides = [];
-    let slidesPreloaded = {};
-    
-    function loadImage(src) {
-        return new Promise((resolve, reject) => {
-            const img = new Image();
-            img.onload = () => resolve(img);
-            img.onerror = reject;
-            img.src = src;
+
+    const sideForm = document.getElementById('sideForm');
+    const sideFormInputs = sideForm.querySelectorAll('.form-input');
+    const sideFormRadios = sideForm.querySelectorAll('input[type="radio"]');
+
+    sideForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        let isValid = true;
+        sideFormInputs.forEach(input => {
+            if (!input.value.trim()) {
+                isValid = false;
+                input.style.borderColor = '#FF2C33';
+            } else {
+                input.style.borderColor = 'rgba(39, 37, 37, 0.5)';
+            }
         });
-    }
-    
-    async function preloadAllSlides() {
-        const preloadPromises = [];
         
-        for (let i = 1; i <= 10; i++) {
-            const src = `files/Interior/${i}.png`;
-            preloadPromises.push(
-                loadImage(src).then(img => {
-                    availableSlides.push(i);
-                    slidesPreloaded[i] = img;
-                    return i;
-                }).catch(() => {
-                    return null;
-                })
-            );
-        }
-        
-        await Promise.all(preloadPromises);
-        
-        availableSlides = availableSlides.filter(Boolean).sort((a, b) => a - b);
-        totalSlides = availableSlides.length;
-        
-        if (availableSlides.length === 0) {
-            console.log('Нет доступных изображений в папке files/Interior/');
-            return false;
-        }
-        
-        return true;
-    }
-    
-    function changeSlide(direction) {
-        if (isAnimating || availableSlides.length === 0) return;
-        
-        isAnimating = true;
-        
-        const currentIndex = availableSlides.indexOf(currentSlideNumber);
-        let nextIndex;
-        
-        if (direction === 'next') {
-            nextIndex = (currentIndex + 1) % availableSlides.length;
+        const selectedGender = sideForm.querySelector('input[name="gender-side"]:checked');
+        if (!selectedGender) {
+            isValid = false;
+            document.querySelector('.gender-options').style.borderColor = '#FF2C33';
         } else {
-            nextIndex = (currentIndex - 1 + availableSlides.length) % availableSlides.length;
+            document.querySelector('.gender-options').style.borderColor = 'rgba(39, 37, 37, 0.5)';
         }
         
-        const nextSlideNumber = availableSlides[nextIndex];
-        const nextImageSrc = `files/Interior/${nextSlideNumber}.png`;
-        
-        if (slidesPreloaded[nextSlideNumber]) {
-            nextSlide.src = nextImageSrc;
-        } else {
-            loadImage(nextImageSrc).then(() => {
-                nextSlide.src = nextImageSrc;
-            }).catch(() => {
-                console.log(`Ошибка загрузки изображения: ${nextImageSrc}`);
-                isAnimating = false;
-                return;
-            });
-        }
-        
-        nextSlide.alt = `Интерьер ресторана ${nextSlideNumber}`;
-        
-        requestAnimationFrame(() => {
-            activeSlide.style.opacity = '0';
-            
-            setTimeout(() => {
-                requestAnimationFrame(() => {
-                    nextSlide.style.opacity = '1';
-                    
-                    setTimeout(() => {
-                        activeSlide.classList.remove('active-slide');
-                        nextSlide.classList.remove('next-slide');
-                        nextSlide.classList.add('active-slide');
-                        activeSlide.classList.add('next-slide');
-                        
-                        currentSlideNumber = nextSlideNumber;
-                        
-                        activeSlide.style.opacity = '0';
-                        nextSlide.style.opacity = '1';
-                        
-                        const nextHiddenIndex = (nextIndex + 1) % availableSlides.length;
-                        const nextHiddenSlideNumber = availableSlides[nextHiddenIndex];
-                        const hiddenImageSrc = `files/Interior/${nextHiddenSlideNumber}.png`;
-                        
-                        if (!slidesPreloaded[nextHiddenSlideNumber]) {
-                            loadImage(hiddenImageSrc).then(img => {
-                                slidesPreloaded[nextHiddenSlideNumber] = img;
-                            });
-                        }
-                        
-                        isAnimating = false;
-                    }, 800); 
-                });
-            }, 100);
-        });
-    }
-    
-    async function initSlider() {
-        const hasSlides = await preloadAllSlides();
-        
-        if (!hasSlides) {
-            document.querySelector('.photo-slider').style.display = 'none';
+        // Проверка чекбокса
+        const privacyChecked = sideForm.querySelector('input[type="checkbox"]').checked;
+        if (!privacyChecked) {
+            isValid = false;
+            alert('Пожалуйста, согласитесь с условиями');
             return;
         }
         
-        activeSlide.src = `files/Interior/${availableSlides[0]}.png`;
-        activeSlide.alt = `Интерьер ресторана ${availableSlides[0]}`;
+        if (!isValid) {
+            alert('Пожалуйста, заполните все обязательные поля');
+            return;
+        }
         
-        leftArrow.addEventListener('click', () => changeSlide('prev'));
-        rightArrow.addEventListener('click', () => changeSlide('next'));
+        const formData = {
+            name: sideFormInputs[0].value,
+            phone: sideFormInputs[1].value,
+            email: sideFormInputs[2].value,
+            age: sideFormInputs[3].value,
+            gender: selectedGender.value
+        };
         
-        document.addEventListener('keydown', (e) => {
-            // Обработка боковой формы
-            const sideForm = document.getElementById('sideForm');
-            const sideFormInputs = sideForm.querySelectorAll('.form-input');
-            const sideFormRadios = sideForm.querySelectorAll('input[type="radio"]');
+        console.log('Данные боковой формы:', formData);
+        
+        sideForm.reset();
+        
+        openSuccessModal();
+    });
 
-            sideForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                
-                // Проверка заполнения полей
-                let isValid = true;
-                sideFormInputs.forEach(input => {
-                    if (!input.value.trim()) {
-                        isValid = false;
-                        input.style.borderColor = '#FF2C33';
-                    } else {
-                        input.style.borderColor = 'rgba(39, 37, 37, 0.5)';
-                    }
-                });
-                
-                // Проверка выбора пола
-                const selectedGender = sideForm.querySelector('input[name="gender-side"]:checked');
-                if (!selectedGender) {
-                    isValid = false;
-                    document.querySelector('.gender-options').style.borderColor = '#FF2C33';
-                } else {
-                    document.querySelector('.gender-options').style.borderColor = 'rgba(39, 37, 37, 0.5)';
-                }
-                
-                // Проверка чекбокса
-                const privacyChecked = sideForm.querySelector('input[type="checkbox"]').checked;
-                if (!privacyChecked) {
-                    isValid = false;
-                    alert('Пожалуйста, согласитесь с условиями');
-                    return;
-                }
-                
-                if (!isValid) {
-                    alert('Пожалуйста, заполните все обязательные поля');
-                    return;
-                }
-                
-                // Сбор данных
-                const formData = {
-                    name: sideFormInputs[0].value,
-                    phone: sideFormInputs[1].value,
-                    email: sideFormInputs[2].value,
-                    age: sideFormInputs[3].value,
-                    gender: selectedGender.value
-                };
-                
-                console.log('Данные боковой формы:', formData);
-                
-                // Сброс формы
-                sideForm.reset();
-                
-                // Открытие модального окна успеха
-                openSuccessModal();
-            });
+    sideFormRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            const label = this.closest('.gender-option');
+            label.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                label.style.transform = 'scale(1)';
+            }, 150);
+        });
+    });
 
-            // Анимация при выборе радио-кнопок
-            sideFormRadios.forEach(radio => {
-                radio.addEventListener('change', function() {
-                    const label = this.closest('.gender-option');
-                    label.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        label.style.transform = 'scale(1)';
-                    }, 150);
-                });
-            });
-
-            // Сброс ошибок при вводе
-            sideFormInputs.forEach(input => {
-                input.addEventListener('input', function() {
-                    if (this.value.trim()) {
-                        this.style.borderColor = 'rgba(39, 37, 37, 0.5)';
-                    }
-                });
-            });
-            if (e.key === 'ArrowLeft') {
-                changeSlide('prev');
-            } else if (e.key === 'ArrowRight') {
-                changeSlide('next');
+    sideFormInputs.forEach(input => {
+        input.addEventListener('input', function() {
+            if (this.value.trim()) {
+                this.style.borderColor = 'rgba(39, 37, 37, 0.5)';
             }
         });
-        
-        let touchStartX = 0;
-        let touchEndX = 0;
-        const swipeThreshold = 50;
-        
-        const slideImage = document.querySelector('.slide-image');
-        
-        slideImage.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].clientX;
-            e.preventDefault();
-        }, { passive: false });
-        
-        slideImage.addEventListener('touchmove', (e) => {
-            e.preventDefault();
-        }, { passive: false });
-        
-        slideImage.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].clientX;
-            const diff = touchStartX - touchEndX;
-            
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    changeSlide('next');
-                } else {
-                    changeSlide('prev');
-                }
-            }
-            
-            e.preventDefault();
-        }, { passive: false });
-        
-        document.addEventListener('touchmove', (e) => {
-            if (e.target.closest('.slide-image')) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-    }
-    
+    });
+
     initSlider();
+    
+    initMap();
+    
+    initMobileOptimizations();
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-        ymaps.ready(init);
+let currentSlideNumber = 1;
+let isAnimating = false;
+let availableSlides = [];
+let slidesPreloaded = {};
+
+function loadImage(src) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = src;
+    });
+}
+
+async function preloadAllSlides() {
+    const preloadPromises = [];
+    
+    for (let i = 1; i <= 10; i++) {
+        const src = `files/Interior/${i}.png`;
+        preloadPromises.push(
+            loadImage(src).then(img => {
+                availableSlides.push(i);
+                slidesPreloaded[i] = img;
+                return i;
+            }).catch(() => {
+                return null;
+            })
+        );
+    }
+    
+    await Promise.all(preloadPromises);
+    
+    availableSlides = availableSlides.filter(Boolean).sort((a, b) => a - b);
+    
+    if (availableSlides.length === 0) {
+        console.log('Нет доступных изображений в папке files/Interior/');
+        return false;
+    }
+    
+    return true;
+}
+
+function changeSlide(direction) {
+    if (isAnimating || availableSlides.length === 0) return;
+    
+    isAnimating = true;
+    
+    const activeSlide = document.querySelector('.active-slide');
+    const nextSlide = document.querySelector('.next-slide');
+    const currentIndex = availableSlides.indexOf(currentSlideNumber);
+    let nextIndex;
+    
+    if (direction === 'next') {
+        nextIndex = (currentIndex + 1) % availableSlides.length;
+    } else {
+        nextIndex = (currentIndex - 1 + availableSlides.length) % availableSlides.length;
+    }
+    
+    const nextSlideNumber = availableSlides[nextIndex];
+    const nextImageSrc = `files/Interior/${nextSlideNumber}.png`;
+    
+    if (slidesPreloaded[nextSlideNumber]) {
+        nextSlide.src = nextImageSrc;
+    } else {
+        loadImage(nextImageSrc).then(() => {
+            nextSlide.src = nextImageSrc;
+        }).catch(() => {
+            console.log(`Ошибка загрузки изображения: ${nextImageSrc}`);
+            isAnimating = false;
+            return;
+        });
+    }
+    
+    nextSlide.alt = `Интерьер ресторана ${nextSlideNumber}`;
+    
+    requestAnimationFrame(() => {
+        activeSlide.style.opacity = '0';
         
-        function init() {
-            // Создание карты с центром по адресу: Москва, Ольховская улица, 23
+        setTimeout(() => {
+            requestAnimationFrame(() => {
+                nextSlide.style.opacity = '1';
+                
+                setTimeout(() => {
+                    activeSlide.classList.remove('active-slide');
+                    nextSlide.classList.remove('next-slide');
+                    nextSlide.classList.add('active-slide');
+                    activeSlide.classList.add('next-slide');
+                    
+                    currentSlideNumber = nextSlideNumber;
+                    
+                    activeSlide.style.opacity = '0';
+                    nextSlide.style.opacity = '1';
+                    
+                    const nextHiddenIndex = (nextIndex + 1) % availableSlides.length;
+                    const nextHiddenSlideNumber = availableSlides[nextHiddenIndex];
+                    const hiddenImageSrc = `files/Interior/${nextHiddenSlideNumber}.png`;
+                    
+                    if (!slidesPreloaded[nextHiddenSlideNumber]) {
+                        loadImage(hiddenImageSrc).then(img => {
+                            slidesPreloaded[nextHiddenSlideNumber] = img;
+                        });
+                    }
+                    
+                    isAnimating = false;
+                }, 800);
+            });
+        }, 100);
+    });
+}
+
+async function initSlider() {
+    const hasSlides = await preloadAllSlides();
+    
+    if (!hasSlides) {
+        document.querySelector('.photo-slider').style.display = 'none';
+        return;
+    }
+    
+    const activeSlide = document.querySelector('.active-slide');
+    activeSlide.src = `files/Interior/${availableSlides[0]}.png`;
+    activeSlide.alt = `Интерьер ресторана ${availableSlides[0]}`;
+    
+    const leftArrow = document.querySelector('.slider-arrow.left');
+    const rightArrow = document.querySelector('.slider-arrow.right');
+    
+    leftArrow.addEventListener('click', () => changeSlide('prev'));
+    rightArrow.addEventListener('click', () => changeSlide('next'));
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            changeSlide('prev');
+        } else if (e.key === 'ArrowRight') {
+            changeSlide('next');
+        }
+    });
+    
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const swipeThreshold = 50;
+    
+    const slideImage = document.querySelector('.slide-image');
+    
+    slideImage.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].clientX;
+        e.preventDefault();
+    }, { passive: false });
+    
+    slideImage.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+    }, { passive: false });
+    
+    slideImage.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                changeSlide('next');
+            } else {
+                changeSlide('prev');
+            }
+        }
+        
+        e.preventDefault();
+    }, { passive: false });
+}
+
+function initMap() {
+    if (typeof ymaps === 'undefined') {
+        console.error('Yandex Maps API не загружена. Проверьте подключение скрипта.');
+        document.getElementById('map').innerHTML = 
+            '<div style="width:100%;height:500px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;border-radius:20px;">' +
+            '<p>Карта временно недоступна. Используйте кнопки для построения маршрута.</p>' +
+            '</div>';
+        return;
+    }
+    
+    ymaps.ready(function() {
+        try {
             var myMap = new ymaps.Map("map", {
-                center: [55.774755, 37.667896], // Координаты Ольховская улица, 23
+                center: [55.774755, 37.667896],
                 zoom: 16,
                 controls: ['zoomControl', 'typeSelector', 'fullscreenControl']
             });
             
-            // Добавление маркера
             var myPlacemark = new ymaps.Placemark([55.774755, 37.667896], {
-                balloonContent: 'Ольховская улица, 23, Москва'
+                balloonContent: 'Ресторан «IL Патио», м. Технопарк, просп. Андропова, 1, этаж 1'
             }, {
                 preset: 'islands#redDotIcon'
             });
             
             myMap.geoObjects.add(myPlacemark);
             
-            // Включение управления картой с помощью мыши и клавиатуры
             myMap.behaviors.enable(['drag', 'scrollZoom', 'dblClickZoom']);
+            
+            console.log('Карта успешно инициализирована');
+            
+        } catch (error) {
+            console.error('Ошибка при создании карты:', error);
+            document.getElementById('map').innerHTML = 
+                '<div style="width:100%;height:500px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;border-radius:20px;color:#ff2c33;">' +
+                '<p>Ошибка загрузки карты. Попробуйте обновить страницу.</p>' +
+                '</div>';
         }
     });
+}
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Определяем мобильное устройство
+function initMobileOptimizations() {
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
     if (isMobile) {
-        // Улучшаем работу слайдера на мобильных
         const slideImage = document.querySelector('.slide-image');
         if (slideImage) {
             slideImage.style.touchAction = 'pan-y pinch-zoom';
         }
         
-        // Улучшаем работу форм на мобильных
         const formInputs = document.querySelectorAll('.form-input');
         formInputs.forEach(input => {
             input.addEventListener('focus', function() {
-                // Прокручиваем к полю ввода на мобильных
                 setTimeout(() => {
                     this.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }, 300);
             });
         });
         
-        // Улучшаем кнопки на мобильных
         const buttons = document.querySelectorAll('button');
         buttons.forEach(button => {
             button.addEventListener('touchstart', function() {
@@ -456,7 +457,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.style.opacity = '1';
             });
         });
+        
+        const radioOptions = document.querySelectorAll('.gender-option');
+        radioOptions.forEach(option => {
+            option.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+            
+            option.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
     }
-    
-    // Остальной существующий код...
-});
+}
