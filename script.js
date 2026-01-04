@@ -402,12 +402,12 @@ function initMap() {
         try {
 
             var myMap = new ymaps.Map("map", {
-                center: [55.6943, 37.6646], 
+                center: [55.774755, 37.667896], 
                 zoom: 16,
                 controls: ['zoomControl', 'typeSelector', 'fullscreenControl']
             });
             
-            var myPlacemark = new ymaps.Placemark([55.6943, 37.6646], {
+            var myPlacemark = new ymaps.Placemark([55.774755, 37.667896], {
                 balloonContent: 'Ресторан «IL Патио», м. Технопарк, просп. Андропова, 1, этаж 1'
             }, {
                 preset: 'islands#redDotIcon'
