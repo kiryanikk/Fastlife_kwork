@@ -169,7 +169,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.gender-options').style.borderColor = 'rgba(39, 37, 37, 0.5)';
         }
         
-        // Проверка чекбокса
         const privacyChecked = sideForm.querySelector('input[type="checkbox"]').checked;
         if (!privacyChecked) {
             isValid = false;
@@ -401,13 +400,14 @@ function initMap() {
     
     ymaps.ready(function() {
         try {
+
             var myMap = new ymaps.Map("map", {
-                center: [55.774755, 37.667896],
+                center: [55.6943, 37.6646], 
                 zoom: 16,
                 controls: ['zoomControl', 'typeSelector', 'fullscreenControl']
             });
             
-            var myPlacemark = new ymaps.Placemark([55.774755, 37.667896], {
+            var myPlacemark = new ymaps.Placemark([55.6943, 37.6646], {
                 balloonContent: 'Ресторан «IL Патио», м. Технопарк, просп. Андропова, 1, этаж 1'
             }, {
                 preset: 'islands#redDotIcon'
@@ -446,7 +446,7 @@ function initMobileOptimizations() {
                 }, 300);
             });
         });
-        
+
         const buttons = document.querySelectorAll('button');
         buttons.forEach(button => {
             button.addEventListener('touchstart', function() {
